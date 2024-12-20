@@ -1,0 +1,14 @@
+**/.git
+**/.idea
+/.github
+/docs
+/log
+/tmp
+/.dockerignore
+/.editorconfig
+/.gitattributes
+/.gitignore
+/.golangci.yaml
+/Dockerfile
+/compose.yaml
+/README.md

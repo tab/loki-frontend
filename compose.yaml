@@ -1,0 +1,20 @@
+name: loki-frontend
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+    networks:
+      - loki-network
+
+networks:
+  loki-network:
+    name: loki-network
+    external: false

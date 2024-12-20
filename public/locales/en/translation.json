@@ -1,0 +1,14 @@
+{
+  "translation": {
+    "pages": {
+      "home": {
+        "title": "Home"
+      }
+    },
+    "common": {
+      "loading": "Loading...",
+      "submit": "Submit",
+      "back": "Back"
+    }
+  }
+}
