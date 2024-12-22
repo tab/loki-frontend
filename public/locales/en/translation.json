@@ -1,14 +1,66 @@
 {
   "translation": {
+    "app": {
+      "title": "Loki SSO"
+    },
+    "nav": {
+      "login": "Login",
+      "account": "Account",
+      "logout": "Logout"
+    },
     "pages": {
-      "home": {
-        "title": "Home"
+      "login": {
+        "title": "Choose login method",
+        "providers": {
+          "smart_id": "Smart-ID",
+          "mobile_id": "Mobile-ID",
+          "id_card": "ID-card"
+        },
+        "form": {
+          "submit": "Login"
+        },
+        "verification": {
+          "code": "Verification code"
+        }
+      },
+      "account": {
+        "title": "Account"
       }
     },
     "common": {
       "loading": "Loading...",
-      "submit": "Submit",
-      "back": "Back"
+      "refresh": "Refresh",
+      "submit": "Submit"
+    },
+    "errors": {
+      "unauthorized": "Unauthorized",
+      "unexpected_error": "An unexpected error occurred"
+    },
+    "personal_code": {
+      "title": "Personal code",
+      "form": {
+        "placeholder": "Enter personal code"
+      }
+    },
+    "phone_number": {
+      "title": "Phone number",
+      "form": {
+        "placeholder": "Enter phone number"
+      }
+    },
+    "user": {
+      "identity_number": "Identity",
+      "personal_code": "Personal code",
+      "first_name": "First name",
+      "last_name": "Last name",
+      "access_token": "JWT Access token",
+      "refresh_token": "JWT Refresh token"
+    },
+    "validation": {
+      "field": {
+        "required": "{{field}} is required",
+        "invalid": "{{field}} is not valid"
+      }
     }
   }
 }

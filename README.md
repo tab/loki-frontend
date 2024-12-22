@@ -3,8 +3,8 @@
 ## Setup
 
 ```sh
-    docker-compose run frontend yarn install
-    docker-compose build frontend
+    docker-compose build
+    docker-compose run app yarn install
 ```
 
 ## Run
