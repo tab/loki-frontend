@@ -2,8 +2,13 @@
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
+import { Alert, LinearProgress } from "@mui/material"
+
 import i18n from "@/config/i18n"
-import { getSessionStatus, finalizeSession } from "@/lib/api/sessions"
+import { axiosInstance } from "@/lib/axios"
+import { useAuth } from "@/context/AuthContext"
+import { SessionType } from "@/types/session"
+import { UserType } from "@/types/user"
 
 interface Props {
   traceId: string
@@ -14,34 +19,48 @@ interface Props {
 const POLLING_INTERVAL = 2500
 
 export default function Polling({ traceId, sessionId, pollingInterval = POLLING_INTERVAL }: Props) {
+  const router = useRouter()
+  const { login } = useAuth()
   const [status, setStatus] = useState<string>("RUNNING")
   const [error, setError] = useState<string | null>(null)
-  const router = useRouter()
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout
 
     const checkStatus = async () => {
       try {
-        const session = await getSessionStatus({ traceId, sessionId })
+        const response = await axiosInstance.get<SessionType>(`/sessions/${sessionId}`, {
+          headers: {
+            'X-Trace-ID': traceId
+          }
+        })
+        const session = response.data
+
         setStatus(session.status)
+
         if (session.status === "ERROR") {
           setError(session.error || i18n.t("errors.unexpected_error"))
           clearInterval(intervalId)
         } else if (session.status === "SUCCESS") {
           clearInterval(intervalId)
           try {
-            const user = await finalizeSession({ traceId, sessionId })
-            localStorage.setItem("access_token", user.access_token)
-            localStorage.setItem("refresh_token", user.refresh_token)
+            const userResponse = await axiosInstance.post<UserType>(`/sessions/${sessionId}`, {}, {
+              headers: {
+                'X-Trace-ID': traceId
+              }
+            })
+            const userData = userResponse.data
 
-            router.push("/account")
+            login(userData, {
+              access_token: userData.access_token || "",
+              refresh_token: userData.refresh_token || ""
+            })
           } catch (finalizeError: any) {
-            setError(finalizeError.message)
+            setError(finalizeError.message || i18n.t("errors.unexpected_error"))
           }
         }
       } catch (err: any) {
-        setError(err.message)
+        setError(err.message || i18n.t("errors.unexpected_error"))
         clearInterval(intervalId)
       }
     }
@@ -52,14 +71,19 @@ export default function Polling({ traceId, sessionId, pollingInterval = POLLING_
     return () => {
       clearInterval(intervalId)
     }
-  }, [traceId, sessionId, pollingInterval, router])
+  }, [traceId, sessionId, pollingInterval, router, login])
 
   if (error) {
-    return <div>{error}</div>
+    return <Alert severity="error">{error}</Alert>
   }
 
   if (status === "RUNNING") {
-    return <div>{i18n.t("common.loading")}</div>
+    return (
+      <>
+        <LinearProgress color="info" />
+        <Alert severity="info">{i18n.t("common.loading")}</Alert>
+      </>
+    )
   }
 
   return null

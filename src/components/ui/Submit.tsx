@@ -1,17 +1,17 @@
 "use client"
 
-import i18n from "@/config/i18n"
+import React from "react"
+import { Button, CircularProgress } from "@mui/material"
 
-export default function Submit({ children, isSubmitting }: { children: React.ReactNode; isSubmitting: boolean }) {
+interface SubmitProps {
+  children: React.ReactNode
+  disabled?: boolean
+}
+
+export default function Submit({ children, disabled }: SubmitProps) {
   return (
-    <>
-      {isSubmitting ? (
-        <button aria-busy="true">{i18n.t("common.loading")}</button>
-      ) : (
-        <button type="submit" disabled={isSubmitting}>
-          {children}
-        </button>
-      )}
-    </>
+    <Button type="submit" variant="contained" fullWidth disabled={disabled}>
+      {disabled ? <CircularProgress size={24} /> : children}
+    </Button>
   )
 }

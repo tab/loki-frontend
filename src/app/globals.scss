@@ -1,7 +1,3 @@
-@use "@picocss/pico/scss/pico" with (
-  $theme-color: "amber",
-);
-
 :root {
   --background: #f2f2f2;
   --foreground: #171717;
@@ -11,13 +7,6 @@
 [data-theme='dark'] {
   --background: #171717;
   --foreground: #f2f2f2;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 html,
@@ -30,6 +19,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 * {
@@ -44,7 +35,17 @@ a {
 }
 
 @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+
   html {
     color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--background) !important;
+    color: var(--foreground) !important;
   }
 }
