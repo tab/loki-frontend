@@ -4,8 +4,10 @@
       "title": "Loki SSO"
     },
     "nav": {
-      "login": "Login",
+      "about": "About",
       "account": "Account",
+      "backoffice": "Backoffice",
+      "login": "Login",
       "logout": "Logout"
     },
     "pages": {
@@ -16,6 +18,17 @@
           "mobile_id": "Mobile-ID",
           "id_card": "ID-card"
         },
+        "countries": {
+          "ee": "Estonia",
+          "lv": "Latvia",
+          "lt": "Lithuania",
+          "be": "Belgium"
+        },
+        "locales": {
+          "en": "English",
+          "ee": "Estonian",
+          "ru": "Russian"
+        },
         "form": {
           "submit": "Login"
         },
@@ -23,18 +36,97 @@
           "code": "Verification code"
         }
       },
+      "about": {
+        "title": "About"
+      },
       "account": {
-        "title": "Account"
+        "title": "Account",
+        "welcome": "Welcome, {{name}}",
+        "info": "Personal info"
+      },
+      "backoffice": {
+        "title": "Backoffice",
+        "form": {
+          "submit": "Save"
+        },
+        "permissions": {
+          "title": "Permissions",
+          "new": {
+            "title": "New permission"
+          },
+          "edit": {
+            "title": "Edit {{name}}"
+          }
+        },
+        "roles": {
+          "title": "Roles",
+          "new": {
+            "title": "New role"
+          },
+          "edit": {
+            "title": "Edit {{name}}"
+          }
+        },
+        "scopes": {
+          "title": "Scopes",
+          "new": {
+            "title": "New scope"
+          },
+          "edit": {
+            "title": "Edit {{name}}"
+          }
+        },
+        "tokens": {
+          "title": "Tokens"
+        },
+        "users": {
+          "title": "Users",
+          "new": {
+            "title": "New user"
+          },
+          "edit": {
+            "title": "Edit {{name}}"
+          }
+        }
       }
     },
     "common": {
+      "actions": "Actions",
+      "add": "Add",
+      "back": "Back",
+      "cancel": "Cancel",
+      "close": "Close",
+      "delete": "Delete",
+      "edit": "Edit",
       "loading": "Loading...",
       "refresh": "Refresh",
       "submit": "Submit"
     },
+    "theme": {
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "dialog": {
+      "delete": {
+        "title": "Delete",
+        "message": "Are you sure you want to remove {{id}}?"
+      }
+    },
+    "pagination": {
+      "rows_per_page": "Rows per page:",
+      "of": "of",
+      "more_than": "more than"
+    },
     "errors": {
+      "forbidden": "Access denied. You do not have the necessary permissions",
       "unauthorized": "Unauthorized",
       "unexpected_error": "An unexpected error occurred"
+    },
+    "identity_number": {
+      "title": "Identity number",
+      "form": {
+        "placeholder": "Enter identity number"
+      }
     },
     "personal_code": {
       "title": "Personal code",
@@ -48,13 +140,189 @@
         "placeholder": "Enter phone number"
       }
     },
+    "first_name": {
+      "title": "First name",
+      "form": {
+        "placeholder": "Enter first name"
+      }
+    },
+    "last_name": {
+      "title": "Last name",
+      "form": {
+        "placeholder": "Enter last name"
+      }
+    },
+    "name": {
+      "title": "Name",
+      "form": {
+        "placeholder": "Enter name"
+      }
+    },
+    "description": {
+      "title": "Description",
+      "form": {
+        "placeholder": "Enter description"
+      }
+    },
+    "permission": {
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "form": {
+        "name": {
+          "title": "Name",
+          "placeholder": "Enter read:users or write:users"
+        },
+        "description": {
+          "title": "Description",
+          "placeholder": "Enter permission description"
+        }
+      },
+      "snackbar": {
+        "create": {
+          "success": "Permission created",
+          "error": "Failed to create permission"
+        },
+        "update": {
+          "success": "Permission updated",
+          "error": "Failed to update permission"
+        },
+        "destroy": {
+          "success": "Permission deleted",
+          "error": "Failed to delete permission"
+        }
+      }
+    },
+    "role": {
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "form": {
+        "name": {
+          "title": "Name",
+          "placeholder": "Enter admin or user"
+        },
+        "description": {
+          "title": "Description",
+          "placeholder": "Enter role description"
+        },
+        "permissions": {
+          "title": "Permissions"
+        }
+      },
+      "snackbar": {
+        "create": {
+          "success": "Role created",
+          "error": "Failed to create role"
+        },
+        "update": {
+          "success": "Role updated",
+          "error": "Failed to update role"
+        },
+        "destroy": {
+          "success": "Role deleted",
+          "error": "Failed to delete role"
+        }
+      }
+    },
+    "scope": {
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "form": {
+        "name": {
+          "title": "Name",
+          "placeholder": "Enter sso-service or self-service"
+        },
+        "description": {
+          "title": "Description",
+          "placeholder": "Enter scope description"
+        }
+      },
+      "snackbar": {
+        "create": {
+          "success": "Scope created",
+          "error": "Failed to create scope"
+        },
+        "update": {
+          "success": "Scope updated",
+          "error": "Failed to update scope"
+        },
+        "destroy": {
+          "success": "Scope deleted",
+          "error": "Failed to delete scope"
+        }
+      }
+    },
+    "token": {
+      "id": "ID",
+      "user_id": "User ID",
+      "user": "User",
+      "type": "Type",
+      "value": "Value",
+      "expires_at": "Expires At",
+      "snackbar": {
+        "create": {
+          "success": "Token created",
+          "error": "Failed to create token"
+        },
+        "update": {
+          "success": "Token updated",
+          "error": "Failed to update token"
+        },
+        "destroy": {
+          "success": "Token deleted",
+          "error": "Failed to delete token"
+        }
+      }
+    },
     "user": {
-      "identity_number": "Identity",
-      "personal_code": "Personal code",
-      "first_name": "First name",
-      "last_name": "Last name",
-      "access_token": "JWT Access token",
-      "refresh_token": "JWT Refresh token"
+      "id": "ID",
+      "identity_number": "Identity Number",
+      "personal_code": "Personal Code",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "full_name": "Full Name",
+      "access_token": "JWT Access Token",
+      "refresh_token": "JWT Refresh Token",
+      "form": {
+        "identity_number": {
+          "title": "Identity Number",
+          "placeholder": "Enter PNOEE-40504040001"
+        },
+        "personal_code": {
+          "title": "Personal Code",
+          "placeholder": "Enter 40504040001"
+        },
+        "first_name": {
+          "title": "First Name",
+          "placeholder": "Enter first name"
+        },
+        "last_name": {
+          "title": "Last Name",
+          "placeholder": "Enter last name"
+        },
+        "roles": {
+          "title": "Roles"
+        },
+        "scopes": {
+          "title": "Scopes"
+        }
+      },
+      "snackbar": {
+        "create": {
+          "success": "User created",
+          "error": "Failed to create user"
+        },
+        "update": {
+          "success": "User updated",
+          "error": "Failed to update user"
+        },
+        "destroy": {
+          "success": "User deleted",
+          "error": "Failed to delete user"
+        }
+      }
     },
     "validation": {
       "field": {

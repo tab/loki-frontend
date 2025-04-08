@@ -1,45 +1,49 @@
 "use client"
 
-import { Field, FieldProps } from "formik"
-
-import styles from "./Input.module.css"
+import React from "react"
+import { TextField } from "@mui/material"
 
 interface InputProps {
-  type: string
+  label: string
   name: string
-  placeholder: string
-  autoComplete?: string
-  label?: string
+  value: string
+  placeholder?: string
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  onBlur: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>
+  error?: boolean
+  helperText?: string
+  type?: string
+  fullWidth?: boolean
+  margin?: "none" | "dense" | "normal"
 }
 
-interface FieldMeta {
-  touched: boolean
-  error?: string
-}
-
-export default function Input(props: InputProps) {
-  const isInvalid = (meta: FieldMeta) => meta.touched && !!meta.error
-
+export default function Input({
+  label,
+  name,
+  value,
+  placeholder = "",
+  onChange,
+  onBlur,
+  error = false,
+  helperText = "",
+  type = "text",
+  fullWidth = true,
+  margin = "normal",
+}: InputProps) {
   return (
-    <Field {...props}>
-      {({ field, meta }: FieldProps<string> & { meta: FieldMeta }) => (
-        <>
-          <input
-            {...field}
-            type={props.type}
-            placeholder={props.placeholder}
-            autoComplete={props.autoComplete}
-            aria-invalid={isInvalid(meta) ? "true" : undefined}
-            aria-describedby={isInvalid(meta) ? `${field.name}-helper` : undefined}
-            className={isInvalid(meta) ? styles.invalid : ""}
-          />
-          {isInvalid(meta) && (
-            <small className={styles.small} id={`${field.name}-helper`}>
-              {meta.error}
-            </small>
-          )}
-        </>
-      )}
-    </Field>
+    <TextField
+      label={label}
+      name={name}
+      value={value}
+      placeholder={placeholder}
+      onChange={onChange}
+      onBlur={onBlur}
+      error={error}
+      helperText={helperText}
+      type={type}
+      fullWidth={fullWidth}
+      margin={margin}
+      variant="outlined"
+    />
   )
 }
