@@ -61,6 +61,11 @@ export default function Header({ position }: HeaderProps) {
     setAnchorEl(null)
   }
 
+  const handleNavClick = (href: string) => (event: React.MouseEvent) => {
+    event.preventDefault()
+    window.location.href = href
+  }
+
   const handleAccount = () => {
     router.push("/account")
     handleMenuClose()
@@ -89,11 +94,15 @@ export default function Header({ position }: HeaderProps) {
 
         <Box sx={{ flexGrow: 1, ml: 4, mr: 4 }}>
           {filteredMenuItems.map(({text, href}, index) => (
-            <Link key={index} href={href} passHref>
-              <Button color="inherit">
-                {text}
-              </Button>
-            </Link>
+            <Button
+              key={index}
+              color="inherit"
+              component="a"
+              href={href}
+              onClick={handleNavClick(href)}
+            >
+              {text}
+            </Button>
           ))}
         </Box>
 
